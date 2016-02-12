@@ -1,0 +1,6 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Primer" "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Analytics" "${PODS_ROOT}/Headers/Public/Expecta" "${PODS_ROOT}/Headers/Public/Primer" "${PODS_ROOT}/Headers/Public/Segment-Primer" "${PODS_ROOT}/Headers/Public/Specta"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Analytics" -isystem "${PODS_ROOT}/Headers/Public/Expecta" -isystem "${PODS_ROOT}/Headers/Public/Primer" -isystem "${PODS_ROOT}/Headers/Public/Segment-Primer" -isystem "${PODS_ROOT}/Headers/Public/Specta"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Analytics" -l"Expecta" -l"Segment-Primer" -l"Specta" -l"z" -framework "Foundation" -framework "Primer" -framework "XCTest"
+PODS_ROOT = ${SRCROOT}/Pods
