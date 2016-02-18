@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Primer"
-  s.version          = "1.0.1"
+  s.version          = "1.0.2"
   s.summary          = "Primer Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -10,17 +10,18 @@ Pod::Spec.new do |s|
                        This is the Primer integration for the iOS library.
                        DESC
 
-  s.homepage         = "http://segment.com/"
-  s.license          =  { :type => 'MIT' }
-  s.author           = { "Segment" => "friends@segment.com" }
+  s.homepage         = "https://goprimer.com/"
+  s.documentation_url = 'http://http://docs.goprimer.com/'
+  s.license          = { :type => 'MIT', :file => 'LICENSE.md' }
+  s.author           = { "Primer" => "success@goprimer.com" }
   s.source           = { :git => "https://github.com/goprimer/analytics-ios-integration-primer.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/segment'
+  s.social_media_url = 'https://twitter.com/GoPrimer'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
 
-  s.dependency 'Analytics', '~> 3.0.3'
+  s.dependency 'Analytics', '~> 3.0.7'
   s.dependency 'Primer', '~> 2.4.1'
 end

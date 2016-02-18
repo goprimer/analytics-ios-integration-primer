@@ -1,5 +1,9 @@
 Change Log
 ==========
+Version 1.0.2 *(17 February, 2016)*
+-------------------------------------------
+Fixing Licenses and Cocoapods Docs
+
 Version 1.0.1 *(12 February, 2016)*
 -------------------------------------------
 *(Workaround for cocoapods cache issue)*

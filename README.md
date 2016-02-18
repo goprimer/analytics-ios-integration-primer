@@ -1,4 +1,4 @@
-# Analytics
+# Segment-Primer
 
 [![Version](https://img.shields.io/cocoapods/v/Segment-Primer.svg?style=flat)](http://cocoapods.org/pods/Segment-Primer)
 [![License](https://img.shields.io/cocoapods/l/Segment-Primer.svg?style=flat)](http://cocoapods.org/pods/Segment-Primer)
@@ -7,30 +7,33 @@ Primer integration for analytics-ios.
 
 ## Installation
 
-Analytics is available through [CocoaPods](http://cocoapods.org). To install
+Segment-Primer is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
 ```ruby
 pod "Segment-Primer"
 ```
 
+## Getting Started
+
+First you will need to register an account with [Primer](http://goprimer.com) to get a Primer Token.
+
+Once the Segment iOS SDK and the Segment-Primer CocoaPod is integrated with your app, toggle Primer on in your Segment integrations, and add your Primer Token which you can find on the Primer Dashboard under Project Settings.
+
+Since Primer needs to be initialized as early as possible, you need to supply the Token when you initialize the factory that is registered with the analytics client.
+
+```
+[config use:[SEGPrimerIntegrationFactory instanceWithToken:@"PRIMER_TOKEN"]];
+```
+
+This will initialize the Primer SDK under the hood and begin collecting events and initializing the Primer Flow.
+
 ## License
 
 ```
-WWWWWW||WWWWWW
- W W W||W W W
-      ||
-    ( OO )__________
-     /  |           \
-    /o o|    MIT     \
-    \___/||_||__||_|| *
-         || ||  || ||
-        _||_|| _||_||
-       (__|__|(__|__|
-
 The MIT License (MIT)
 
-Copyright (c) 2014 Segment, Inc.
+Copyright (c) 2015 Primer, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -49,4 +52,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
 ```
