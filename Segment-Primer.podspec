@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://goprimer.com/"
-  s.documentation_url = 'http://http://docs.goprimer.com/'
+  s.documentation_url = 'http://docs.goprimer.com/'
   s.license          = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author           = { "Primer" => "success@goprimer.com" }
   s.source           = { :git => "https://github.com/goprimer/analytics-ios-integration-primer.git", :tag => s.version.to_s }
