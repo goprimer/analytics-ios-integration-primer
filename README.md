@@ -16,11 +16,11 @@ pod "Segment-Primer"
 
 ## Getting Started
 
-First you will need to register an account with [Primer](http://goprimer.com) to get a Primer Token.
+First you will need to register an account with [Primer](http://goprimer.com) to get a Primer token.
 
-Once the Segment iOS SDK and the Segment-Primer CocoaPod is integrated with your app, toggle Primer on in your Segment integrations, and add your Primer Token which you can find on the Primer Dashboard under Project Settings.
+Once the Segment iOS SDK and the Segment-Primer CocoaPod is integrated with your app, toggle Primer on in your Segment integrations, and add your Primer token, which you can find on the Primer Dashboard under Project Settings. Refer to the [Primer Documentation](http://docs.goprimer.com) for more details on how to setup Primer.
 
-Since Primer needs to be initialized as early as possible, you need to supply the Token when you initialize the factory that is registered with the analytics client.
+Since Primer needs to be initialized as early as possible, you need to supply the token when you initialize the factory that is registered with the analytics client.
 
 ```
 [config use:[SEGPrimerIntegrationFactory instanceWithToken:@"PRIMER_TOKEN"]];
