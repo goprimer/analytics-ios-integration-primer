@@ -12,7 +12,7 @@
     static dispatch_once_t once;
     static SEGPrimerIntegrationFactory *sharedInstance;
     dispatch_once(&once, ^{
-        [[Primer sharedInstance] registerClientWithToken:token];
+        [Primer startWithToken:token];
         sharedInstance = [[self alloc] init];
     });
     return sharedInstance;

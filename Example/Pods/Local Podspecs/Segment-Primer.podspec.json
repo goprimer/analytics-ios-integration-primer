@@ -1,20 +1,22 @@
 {
   "name": "Segment-Primer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "summary": "Primer Integration for Segment's analytics-ios library.",
   "description": "Analytics for iOS provides a single API that lets you\nintegrate with over 100s of tools.\n\nThis is the Primer integration for the iOS library.",
-  "homepage": "http://segment.com/",
+  "homepage": "https://goprimer.com/",
+  "documentation_url": "http://docs.goprimer.com/",
   "license": {
-    "type": "MIT"
+    "type": "MIT",
+    "file": "LICENSE.md"
   },
   "authors": {
-    "Segment": "friends@segment.com"
+    "Primer": "success@goprimer.com"
   },
   "source": {
-    "git": "https://github.com/segment-integrations/analytics-ios-integration-primer.git",
-    "tag": "1.0.0"
+    "git": "https://github.com/goprimer/analytics-ios-integration-primer.git",
+    "tag": "2.0.0"
   },
-  "social_media_url": "https://twitter.com/segment",
+  "social_media_url": "https://twitter.com/GoPrimer",
   "platforms": {
     "ios": "8.0"
   },
@@ -22,10 +24,10 @@
   "source_files": "Pod/Classes/**/*",
   "dependencies": {
     "Analytics": [
-      "~> 3.0.3"
+      "~> 3.3"
     ],
     "Primer": [
-      "~> 2.4.1"
+      "~> 3.1"
     ]
   }
 }

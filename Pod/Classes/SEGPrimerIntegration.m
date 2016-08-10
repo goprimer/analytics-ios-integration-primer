@@ -17,11 +17,8 @@
     
     _settings = settings;
     
-    SEGLog(@"Enabling Primer Event Notification");
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivePrimerEventNotification:)
-                                                 name:PrimerEventFiredNotification
-                                               object:nil];
+    SEGLog(@"Subscribing to Primer Event Fired Notifications.");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePrimerEventFiredNotification:) name:PMREventFiredNotification object:nil];
     
     return self;
 }
@@ -32,12 +29,12 @@
     segmentProperties[@"segment_context"] = payload.context ?: @{};
     segmentProperties[@"segment_integrations"] = payload.integrations ?: @{};
     
-    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:payload.properties];
-    properties[@"integration_source"] = @"segment-ios";
-    properties[@"segment_properties"] = segmentProperties;
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:payload.properties];
+    parameters[@"integration_source"] = @"segment-ios";
+    parameters[@"segment_properties"] = segmentProperties;
     
-    SEGLog(@"[[Primer sharedInstance] track:%@ properties:%@]", payload.event, properties);
-    [[Primer sharedInstance] track:payload.event properties:properties];
+    SEGLog(@"[Primer trackEventWithName:%@ properties:%@]", payload.event, parameters);
+    [Primer trackEventWithName:payload.event parameters:parameters];
 }
 
 - (void)identify:(SEGIdentifyPayload *)payload
@@ -46,21 +43,23 @@
     properties[@"segment_anonymous_id"] = payload.anonymousId ?: @"";
     properties[@"segment_user_id"] = payload.userId ?: @"";
     
-    SEGLog(@"[[Primer sharedInstance] appendUserProperties:%@]", properties);
-    [[Primer sharedInstance] appendUserProperties:properties];
+    SEGLog(@"[Primer appendUserProperties:%@]", properties);
+    [Primer appendUserProperties:properties];
 }
 
-- (void)receivePrimerEventNotification:(NSNotification *)notification
+- (void)handlePrimerEventFiredNotification:(NSNotification *)notification
 {
-    if (![notification.name isEqualToString:PrimerEventFiredNotification]) {
+    if (![notification.name isEqualToString:PMREventFiredNotification]) {
         return;
     }
     
-    NSString *eventName = notification.userInfo[PrimerEventNotificationNameKey];
-    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo[PrimerEventNotificationPropertiesKey]];
+    NSString *name = notification.userInfo[PMREventNotificationNameKey];
+    NSDictionary *parameters = notification.userInfo[PMREventNotificationParametersKey];
+    
+    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:parameters];
     properties[@"integration_source"] = @"segment-ios";
     
-    [[SEGAnalytics sharedAnalytics] track:eventName properties:properties];
+    [[SEGAnalytics sharedAnalytics] track:name properties:properties];
 }
 
 @end

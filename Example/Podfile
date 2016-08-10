@@ -1,12 +1,10 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
-target 'Segment-Primer_Example', :exclusive => true do
-  pod "Segment-Primer", :path => "../"
-end
-
-target 'Segment-Primer_Tests', :exclusive => true do
+target 'Segment-Primer_Example' do
   pod "Segment-Primer", :path => "../"
 
-  pod 'Specta'
-  pod 'Expecta'
+  target 'Segment-Primer_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+    pod 'Expecta'
+  end
 end

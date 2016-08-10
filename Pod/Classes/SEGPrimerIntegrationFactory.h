@@ -5,8 +5,8 @@
 
 @interface SEGPrimerIntegrationFactory : NSObject <SEGIntegrationFactory>
 
-// Primer needs to be initialized early in order to work correctly.
-// The factory accepts the Primer token and initializes it for you.
+// Primer needs to be started early in order to work correctly.
+// The factory accepts the Primer token and starts it for you.
 + (instancetype)instanceWithToken:(NSString *)token;
 
 @end

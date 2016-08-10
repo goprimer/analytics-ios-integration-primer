@@ -1,1 +1,0 @@
-../../../../Primer/Primer.framework/Versions/A/Headers/PrimerDelegate.h

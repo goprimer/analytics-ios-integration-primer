@@ -1,1 +1,1 @@
-../../../../Primer/Primer.framework/Versions/A/Headers/Primer.h
+../../../../Primer/Primer.framework/Headers/Primer.h

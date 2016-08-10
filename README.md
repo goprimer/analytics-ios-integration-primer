@@ -11,7 +11,7 @@ Segment-Primer is available through [CocoaPods](http://cocoapods.org). To instal
 it, simply add the following line to your `Podfile`:
 
 ```ruby
-pod "Segment-Primer"
+pod 'Segment-Primer'
 ```
 
 ## Getting Started
@@ -20,13 +20,13 @@ First you will need to register an account with [Primer](http://goprimer.com) to
 
 Once the Segment iOS SDK and the Segment-Primer CocoaPod is integrated with your app, toggle Primer on in your Segment integrations, and add your Primer token, which you can find on the Primer Dashboard under Project Settings. Refer to the [Primer Documentation](http://docs.goprimer.com) for more details on how to setup Primer.
 
-Since Primer needs to be initialized as early as possible, you need to supply the token when you initialize the factory that is registered with the analytics client.
+Since Primer needs to be started as early as possible, you need to supply the token when you initialize the factory that is registered with the analytics client.
 
-```
-[config use:[SEGPrimerIntegrationFactory instanceWithToken:@"PRIMER_TOKEN"]];
+```objc
+[configuration use:[SEGPrimerIntegrationFactory instanceWithToken:@"PRIMER_TOKEN"]];
 ```
 
-This will initialize the Primer SDK under the hood and begin collecting events and initializing the Primer Flow.
+This will start the Primer SDK under the hood and begin collecting events.
 
 ## License
 
@@ -52,5 +52,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
 ```
