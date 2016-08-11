@@ -4,7 +4,7 @@ PODS:
   - Primer (3.1.2):
     - Primer/Core (= 3.1.2)
   - Primer/Core (3.1.2)
-  - Segment-Primer (2.0.0):
+  - Segment-Primer (2.0.1):
     - Analytics (~> 3.3)
     - Primer (~> 3.1)
   - Specta (1.0.5)
@@ -22,7 +22,7 @@ SPEC CHECKSUMS:
   Analytics: be3d952b8b0f21679e25af3b9dfbbab89597e897
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   Primer: e7cff38f9783e5f6bf96e907da240f23a48f5c4d
-  Segment-Primer: 8791915d48c611938c889463577bc2146432c06e
+  Segment-Primer: 814fff5273ea4a8a1e828b99bb4cd479c0d21cfe
   Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
 
 PODFILE CHECKSUM: 3d8777f91935c0dd64ad5346482302e772cbeb1e

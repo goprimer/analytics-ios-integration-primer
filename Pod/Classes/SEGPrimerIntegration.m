@@ -5,6 +5,12 @@
 #import <Analytics/SEGAnalyticsUtils.h>
 #import <Primer/Primer.h>
 
+@interface SEGPrimerIntegration ()
+
+@property (nonatomic, strong) NSMutableArray *forwardedEventIDs;
+
+@end
+
 @implementation SEGPrimerIntegration
 
 - (id)initWithSettings:(NSDictionary *)settings
@@ -16,6 +22,7 @@
     }
     
     _settings = settings;
+    _forwardedEventIDs = [NSMutableArray array];
     
     SEGLog(@"Subscribing to Primer Event Fired Notifications.");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePrimerEventFiredNotification:) name:PMREventFiredNotification object:nil];
@@ -25,6 +32,12 @@
 
 - (void)track:(SEGTrackPayload *)payload
 {
+    NSString *eventID = payload.properties[@"pmr_event_id"];
+    if (eventID && [self.forwardedEventIDs containsObject:eventID]) {
+        [self.forwardedEventIDs removeObject:eventID];
+        return;
+    }
+    
     NSMutableDictionary *segmentProperties = [NSMutableDictionary dictionary];
     segmentProperties[@"segment_context"] = payload.context ?: @{};
     segmentProperties[@"segment_integrations"] = payload.integrations ?: @{};
@@ -33,7 +46,7 @@
     parameters[@"integration_source"] = @"segment-ios";
     parameters[@"segment_properties"] = segmentProperties;
     
-    SEGLog(@"[Primer trackEventWithName:%@ properties:%@]", payload.event, parameters);
+    SEGLog(@"[Primer trackEventWithName:%@ parameters:%@]", payload.event, parameters);
     [Primer trackEventWithName:payload.event parameters:parameters];
 }
 
@@ -53,12 +66,30 @@
         return;
     }
     
-    NSString *name = notification.userInfo[PMREventNotificationNameKey];
-    NSDictionary *parameters = notification.userInfo[PMREventNotificationParametersKey];
+    NSDictionary *userInfo = notification.userInfo;
+    if (!userInfo && [notification.object isKindOfClass:[NSDictionary class]]) {
+        userInfo = notification.object;
+    }
     
+    if (!userInfo) {
+        return;
+    }
+    
+    NSString *name = userInfo[PMREventNotificationNameKey];
+    if (name.length < 1) {
+        return;
+    }
+    
+    NSDictionary *parameters = userInfo[PMREventNotificationParametersKey] ?: @{};
     NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithDictionary:parameters];
     properties[@"integration_source"] = @"segment-ios";
     
+    NSString *eventID = parameters[@"pmr_event_id"];
+    if (eventID) {
+        [self.forwardedEventIDs addObject:eventID];
+    }
+    
+    SEGLog(@"Forwarding Primer event %@ with properties: %@", name, properties);
     [[SEGAnalytics sharedAnalytics] track:name properties:properties];
 }
 
