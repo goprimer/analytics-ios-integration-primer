@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "Segment-Primer"
-  s.version           = "2.0.1"
+  s.version           = "2.0.2"
   s.summary           = "Primer Integration for Segment's analytics-ios library."
 
   s.description       = <<-DESC
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
 
   s.source_files      = "Pod/Classes/**/*"
 
-  s.dependency "Analytics", "~> 3.3"
-  s.dependency "Primer", "~> 3.1"
+  s.dependency "Analytics", "~> 3.6"
+  s.dependency "Primer", "~> 3.3"
 end

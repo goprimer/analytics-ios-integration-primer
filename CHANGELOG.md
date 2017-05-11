@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.0.2 *(11 May, 2017)*
+-------------------------------------------
+*(Supports analytics-ios 3.6+ and Primer 3.3+)*
+
+  * Updated analytics-ios support to 3.6+.
+  * Updated Primer support to 3.3+.
+
 Version 2.0.1 *(11 August, 2016)*
 -------------------------------------------
 *(Supports analytics-ios 3.3+ and Primer 3.1+)*
