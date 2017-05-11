@@ -1,5 +1,5 @@
 //
-//  PMRExperienceSettings.h - Copyright © 2016 Primer. All rights reserved.
+//  PMRExperienceSettings.h - Copyright © 2017 Primer. All rights reserved.
 //
 
 #import <UIKit/UIkit.h>
@@ -52,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// The view controller that should be presenting the experience.
 @property (nonatomic, strong, nullable) UIViewController *presentingViewController;
+
+/// The name of the specific screen that should be presented.
+@property (nonatomic, strong, nullable) NSString *screenName;
 
 #pragma mark - Creation
 

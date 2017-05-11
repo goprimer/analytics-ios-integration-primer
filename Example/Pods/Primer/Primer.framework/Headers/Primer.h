@@ -1,5 +1,5 @@
 //
-//  Primer.h - Copyright © 2016 Primer. All rights reserved.
+//  Primer.h - Copyright © 2017 Primer. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,6 +19,12 @@ FOUNDATION_EXPORT const unsigned char PrimerVersionString[];
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// The key of the deferred App Link URL launch option.
+extern NSString * const PMRLaunchOptionsDeferredAppLinkURLKey;
+
+/// The key of the is first run launch option.
+extern NSString * const PMRLaunchOptionsIsFirstRunKey;
+
 /**
  `Primer` is the primary interface of the SDK, providing access to all major features, and importing all public headers.
  */
@@ -29,24 +35,48 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Initializes the SDK.
  
- You need to set the SDK Token in your `Info.plist` under the `PrimerToken` key.
+ You need to set the SDK token in your `Info.plist` under the `PrimerToken` key.
  
- @note You can optionally provide the SDK Token as a parameter.
+ @note You can optionally provide the SDK token as a parameter.
  
  @see +startWithToken:
  */
 + (void)start;
 
 /**
- Initializes the SDK with the given Token.
+ Initializes the SDK with the given token.
  
- @note You can optionally provide the Token in your `Info.plist`.
+ @note You can optionally provide the token in your `Info.plist`.
  
  @see +start
  
- @param token The SDK Token to use for the initialization.
+ @param token The SDK token to use for the initialization.
  */
 + (void)startWithToken:(NSString *)token;
+
+/**
+ Initializes the SDK with the given launch options.
+ 
+ @note You can optionally provide the SDK token as a parameter.
+ 
+ @see +startWithToken:options
+ 
+ @param options The dictionary of launch options.
+ */
++ (void)startWithOptions:(NSDictionary *)options;
+
+/**
+ Initializes the SDK with the given token and launch options.
+ 
+ @note You can optionally provide the token in your `Info.plist`.
+ 
+ @see +startWithOptions:
+ 
+ @param token The SDK token to use for the initialization.
+ 
+ @param options The dictionary of launch options.
+ */
++ (void)startWithToken:(NSString *)token options:(NSDictionary *)options;
 
 /**
  Whether the SDK is initialized.
@@ -54,6 +84,39 @@ NS_ASSUME_NONNULL_BEGIN
  @return `YES` if the SDK was properly started, and `NO` otherwise.
  */
 + (BOOL)isInitialized;
+
+/**
+ Sets whether the SDK launch is delayed.
+ 
+ @note Default value is `NO`. If you set this to `YES`, make sure to call +launchDelayedWithOptions: in a timely manner after application launch.
+ 
+ @see +launchDelayedWithOptions:
+ 
+ @warning Make sure to call this method before starting the SDK.
+ 
+ @param enabled The value to be set.
+ */
++ (void)setDelayedLaunchEnabled:(BOOL)enabled;
+
+/**
+ Launches the SDK delayed, with the given options, if any.
+ 
+ @note Delayed launch has to be enabled for this to function.
+ 
+ @see +setDelayedLaunchEnabled:
+ 
+ @param options The dictionary of launch options.
+ */
++ (void)delayedLaunchWithOptions:(nullable NSDictionary *)options;
+
+/**
+ Sets whether the SDK should use Primer's optimized HTTP-based secure connection.
+ 
+ @note Default value is `YES`. If you set this to `NO`, you can safely remove the domain whitelisting from your `Info.plist`.
+ 
+ @param useOptimizedConnection The value to be set.
+ */
++ (void)setShouldUseOptimizedConnection:(BOOL)useOptimizedConnection;
 
 #pragma mark - Onboarding
 
@@ -136,6 +199,34 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)goToNextExperienceScreen;
 
+/**
+ Hides the currently presented experience if there's one.
+ 
+ @note This does not substitute dismissal, so eventually resuming or dismissing is required.
+ */
++ (void)pauseExperience;
+
+/**
+ Hides the currently presented experience if there's one.
+ 
+ @note This does not substitute dismissal, so eventually resuming or dismissing is required.
+ 
+ @param completion The callback that gets called when the dismissal is done.
+ */
++ (void)pauseExperienceWithCompletion:(void (^)(BOOL success))completion;
+
+/**
+ Presents the currently paused experience if there's one.
+ */
++ (void)resumeExperience;
+
+/**
+ Presents the currently paused experience if there's one.
+ 
+ @param completion The callback that gets called when the presentation is done.
+ */
++ (void)resumeExperienceWithCompletion:(void (^)(BOOL success))completion;
+
 #pragma mark - User Management
 
 /**
@@ -208,7 +299,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)appendUserProperties:(NSDictionary<NSString *, id> *)userProperties;
 
 /**
- Let's the SDK know that the types of local and remote notifications that can be used to get the user’s attention changed.
+ Lets the SDK know that the types of local and remote notifications that can be used to get the user’s attention changed.
  */
 + (void)applicationDidRegisterUserNotificationSettings;
 
@@ -277,7 +368,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param cookieAttributionEnabled The value to set.
  */
-+ (void)setCookieAttributionEnabled:(BOOL)cookieAttributionEnabled;
++ (void)setCookieAttributionEnabled:(BOOL)cookieAttributionEnabled DEPRECATED_MSG_ATTRIBUTE("this SDK feature is not available anymore.");
 
 #pragma mark - Logging
 

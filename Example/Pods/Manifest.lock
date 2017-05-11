@@ -1,13 +1,13 @@
 PODS:
-  - Analytics (3.3.0)
+  - Analytics (3.6.0)
   - Expecta (1.0.5)
-  - Primer (3.1.2):
-    - Primer/Core (= 3.1.2)
-  - Primer/Core (3.1.2)
-  - Segment-Primer (2.0.1):
-    - Analytics (~> 3.3)
-    - Primer (~> 3.1)
-  - Specta (1.0.5)
+  - Primer (3.3.0):
+    - Primer/Core (= 3.3.0)
+  - Primer/Core (3.3.0)
+  - Segment-Primer (2.0.2):
+    - Analytics (~> 3.6)
+    - Primer (~> 3.3)
+  - Specta (1.0.6)
 
 DEPENDENCIES:
   - Expecta
@@ -16,15 +16,15 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Segment-Primer:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Analytics: be3d952b8b0f21679e25af3b9dfbbab89597e897
+  Analytics: 15be3e651d22cc811f44df65698538236676437b
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
-  Primer: e7cff38f9783e5f6bf96e907da240f23a48f5c4d
-  Segment-Primer: 814fff5273ea4a8a1e828b99bb4cd479c0d21cfe
-  Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
+  Primer: 645c245f3cc0b44a249ce8f7c2184a488ca118af
+  Segment-Primer: 2cf6785562fae22d238ad76abcb48fcbee9da804
+  Specta: f506f3a8361de16bc0dcf3b17b75e269072ba465
 
 PODFILE CHECKSUM: 3d8777f91935c0dd64ad5346482302e772cbeb1e
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1
